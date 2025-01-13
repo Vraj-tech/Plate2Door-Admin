@@ -1,0 +1,39 @@
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Space out logo, admin text, and profile */
+  align-items: center;
+  padding: 8px 4%;
+}
+
+.navbar .logo-container {
+  display: flex;
+  align-items: center; /* Align logo and text vertically */
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.navbar .admin-panel {
+  font-size: 24px;
+  font-weight: bold;
+  color: tomato;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center; /* Center-align the text */
+}
+
+.navbar .profile {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* Make profile image circular */
+  object-fit: cover;
+}
