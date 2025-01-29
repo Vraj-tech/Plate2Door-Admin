@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Add.css";
 import { assets, url } from "../../assets/assets";
 import axios from "axios";
@@ -6,12 +6,31 @@ import { toast } from "react-toastify";
 
 const Add = () => {
   const [image, setImage] = useState(false);
+  const [categories, setCategories] = useState([]); // State to hold categories
   const [data, setData] = useState({
     name: "",
     description: "",
     price: "",
-    category: "Salad",
+    category: "Salad", // Default category
   });
+
+  // Fetch categories when the component mounts
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(`${url}/api/categories/list`);
+        if (response.data.success) {
+          setCategories(response.data.data); // Set fetched categories
+        } else {
+          toast.error("Failed to fetch categories.");
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error("Error fetching categories.");
+      }
+    };
+    fetchCategories();
+  }, []);
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -96,15 +115,25 @@ const Add = () => {
         <div className="add-category-price">
           <div className="add-category flex-col">
             <p>Product category</p>
-            <select name="category" onChange={onChangeHandler}>
-              <option value="Salad">Salad</option>
+            <select
+              name="category"
+              onChange={onChangeHandler}
+              value={data.category}
+            >
+              {/* <option value="Salad">Salad</option>
               <option value="Rolls">Rolls</option>
               <option value="Deserts">Deserts</option>
               <option value="Sandwich">Sandwich</option>
               <option value="Cake">Cake</option>
               <option value="Pure Veg">Pure Veg</option>
               <option value="Pasta">Pasta</option>
-              <option value="Noodles">Noodles</option>
+              <option value="Noodles">Noodles</option> */}
+              {/* Dynamically added categories */}
+              {categories.map((category) => (
+                <option key={category._id} value={category.name}>
+                  {category.name}
+                </option>
+              ))}
             </select>
           </div>
           <div className="add-price flex-col">

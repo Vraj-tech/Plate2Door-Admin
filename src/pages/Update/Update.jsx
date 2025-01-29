@@ -6,6 +6,7 @@ import "./Update.css";
 
 const Update = () => {
   const [list, setList] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -17,19 +18,47 @@ const Update = () => {
   });
   const [foodId, setFoodId] = useState(""); // Store the selected foodId
   const [previewImage, setPreviewImage] = useState(null); // For image preview
+  const [searchQuery, setSearchQuery] = useState(""); // For storing search query
+  const [sortCriteria, setSortCriteria] = useState(""); // Store the selected sort criteria
+  const [categories, setCategories] = useState([]); // Categories state
 
   // Fetch list of food items
   const fetchList = async () => {
-    const response = await axios.get(`${url}/api/food/list`);
-    if (response.data.success) {
-      setList(response.data.data);
-    } else {
+    try {
+      const response = await axios.get(`${url}/api/food/list`);
+      if (response.data.success) {
+        setList(response.data.data);
+        setFilteredList(response.data.data); // Initially show all items
+      } else {
+        toast.error("Error fetching food list");
+      }
+    } catch (error) {
       toast.error("Error fetching food list");
+    }
+  };
+
+  // Fetch categories from the backend
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get(`${url}/api/categories/list`);
+      if (response.data.success) {
+        const dynamicCategories = response.data.data.map(
+          (category) => category.name
+        );
+        setCategories(dynamicCategories); // Set dynamic categories
+      } else {
+        toast.error("Error fetching categories");
+      }
+    } catch (error) {
+      toast.error("Error fetching categories");
     }
   };
 
   // Fetch food details when update button is clicked
   const fetchFoodDetails = async (id) => {
+    setFoodId(id); // Set the foodId before showing the form
+    setIsFormVisible(true); // Show the form when a food item is selected for update
+
     try {
       const response = await axios.get(`${url}/api/food/${id}`);
       if (response.data.success) {
@@ -50,13 +79,6 @@ const Update = () => {
     } catch (error) {
       toast.error("Error fetching food details");
     }
-  };
-
-  // Handle the update button click
-  const handleUpdateClick = (id) => {
-    setFoodId(id); // Set the foodId for the selected item
-    fetchFoodDetails(id); // Fetch the food details
-    setIsFormVisible(true); // Show the form
   };
 
   // Handle form input change
@@ -110,11 +132,68 @@ const Update = () => {
 
   useEffect(() => {
     fetchList();
+    fetchCategories(); // Fetch categories when the component mounts
   }, []);
+
+  useEffect(() => {
+    // Filter based on search query
+    let filtered = list.filter((item) => {
+      return (
+        item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.category.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    });
+
+    // Sort based on selected sort criteria
+    if (sortCriteria) {
+      if (sortCriteria === "name-asc") {
+        filtered = filtered.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (sortCriteria === "name-desc") {
+        filtered = filtered.sort((a, b) => b.name.localeCompare(a.name));
+      } else if (sortCriteria === "price-low") {
+        filtered = filtered.sort((a, b) => a.price - b.price);
+      } else if (sortCriteria === "price-high") {
+        filtered = filtered.sort((a, b) => b.price - a.price);
+      } else if (sortCriteria === "category") {
+        filtered = filtered.sort((a, b) =>
+          a.category.localeCompare(b.category)
+        );
+      }
+    }
+
+    // Set filtered list
+    setFilteredList(filtered);
+  }, [searchQuery, sortCriteria, list]); // This effect runs whenever searchQuery, sortCriteria or list changes
 
   return (
     <div className="list add flex-col">
       <p>All Foods List</p>
+
+      {/* Search Box */}
+      <div className="search-box">
+        <input
+          type="text"
+          placeholder="Search food or category to Update..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
+
+      {/* Sorting Dropdown */}
+      <div className="sort-container">
+        <select
+          value={sortCriteria}
+          onChange={(e) => setSortCriteria(e.target.value)}
+        >
+          <option value="">Sort by</option>
+          <option value="name-asc">Alphabetical (A-Z)</option>
+          <option value="name-desc">Alphabetical (Z-A)</option>
+          <option value="price-low">Price (Low to High)</option>
+          <option value="price-high">Price (High to Low)</option>
+          <option value="category">Category</option>
+        </select>
+      </div>
+
       <div className="list-table">
         <div className="list-table-format title">
           <b>Image</b>
@@ -123,7 +202,7 @@ const Update = () => {
           <b>Price</b>
           <b>Action</b>
         </div>
-        {list.map((item) => (
+        {filteredList.map((item) => (
           <div key={item._id} className="list-table-format">
             <img src={`${url}/images/` + item.image} alt="" />
             <p>{item.name}</p>
@@ -133,10 +212,7 @@ const Update = () => {
               {item.price}
             </p>
             <div className="action-buttons">
-              {/* Update Button */}
-              <button onClick={() => handleUpdateClick(item._id)}>
-                Update
-              </button>
+              <button onClick={() => fetchFoodDetails(item._id)}>Update</button>
             </div>
           </div>
         ))}
@@ -184,15 +260,11 @@ const Update = () => {
                 onChange={handleChange}
                 required
               >
-                <option value="Salad">Salad</option>
-                <option value="Rolls">Rolls</option>
-                <option value="Deserts">Deserts</option>
-                <option value="Sandwich">Sandwich</option>
-                <option value="Cake">Cake</option>
-                <option value="Pure Veg">Pure Veg</option>
-                <option value="Pasta">Pasta</option>
-                <option value="Noodles">Noodles</option>
-                {/* Add more categories if needed */}
+                {categories.map((category) => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                ))}
               </select>
             </label>
 

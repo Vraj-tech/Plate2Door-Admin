@@ -6,7 +6,7 @@ import Add from "./pages/Add/Add";
 import List from "./pages/List/List";
 import Orders from "./pages/Orders/Orders";
 import Update from "./pages/Update/Update";
-import FoodCategory from "./pages/Food_category/Foodcategory"; // Import the new Food_category component
+import FoodCategory from "./pages/Food_category/Foodcategory";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

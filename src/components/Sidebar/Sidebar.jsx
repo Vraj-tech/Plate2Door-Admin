@@ -26,7 +26,7 @@ const Sidebar = () => {
         </NavLink>
         <NavLink to="/food-category" className="sidebar-option">
           <img src={assets.order_icon} alt="" />
-          <p>Add food category</p>
+          <p>Add/Delete Food category</p>
         </NavLink>
       </div>
     </div>
