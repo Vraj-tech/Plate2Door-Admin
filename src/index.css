@@ -1,31 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-*{
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: Outfit;
 }
-body{
+/* html {
+  font-size: 18px; }/* Increase base font size */
+
+body {
   min-height: 100vh;
-  background-color: #FCFCFC;
+  background-color: #fcfcfc;
+  /* font-size: 1.1rem;  */
+  /* Ensures default text is larger */
 }
-a{
+a {
   text-decoration: none;
   color: inherit;
 }
-hr{
+hr {
   border: none;
   height: 1px;
-  background-color: #A9A9A9;
+  background-color: #a9a9a9;
 }
-.app-content{
+.app-content {
   display: flex;
 }
-.flex-col{
+.flex-col {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.cursor{
+.cursor {
   cursor: pointer;
 }

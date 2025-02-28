@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./List.css";
-import { url, currency, assets } from "../../assets/assets";
+import { url, currency } from "../../assets/assets";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,24 +8,26 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const List = () => {
   const [list, setList] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
   const [filteredList, setFilteredList] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState(""); // For sorting selection
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10; // Number of items per page
 
+  // Fetch food list
   const fetchList = async () => {
     const response = await axios.get(`${url}/api/food/list`);
     if (response.data.success) {
       setList(response.data.data);
-      setFilteredList(response.data.data); // Initially, show all items
+      setFilteredList(response.data.data); // Initially show all items
     } else {
       toast.error("Error");
     }
   };
 
+  // Remove food item
   const removeFood = async (foodId) => {
-    const response = await axios.post(`${url}/api/food/remove`, {
-      id: foodId,
-    });
+    const response = await axios.post(`${url}/api/food/remove`, { id: foodId });
     await fetchList();
     if (response.data.success) {
       toast.success(response.data.message);
@@ -34,6 +36,7 @@ const List = () => {
     }
   };
 
+  // Handle search functionality
   const handleSearch = (event) => {
     const query = event.target.value;
     setSearchQuery(query);
@@ -50,12 +53,12 @@ const List = () => {
     }
   };
 
+  // Handle sorting
   const handleSort = (event) => {
     const option = event.target.value;
     setSortOption(option);
 
     let sortedList = [...filteredList];
-
     switch (option) {
       case "name-asc":
         sortedList.sort((a, b) => a.name.localeCompare(b.name)); // A-Z
@@ -79,6 +82,14 @@ const List = () => {
     setFilteredList(sortedList);
   };
 
+  // Pagination logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredList.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Pagination function to change the page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   useEffect(() => {
     fetchList();
   }, []);
@@ -86,6 +97,11 @@ const List = () => {
   return (
     <div className="list add flex-col">
       <p>All Foods List</p>
+
+      {/* Display total number of foods */}
+      <div className="food-count">
+        <p>Total Foods: {list.length}</p> {/* Display total items */}
+      </div>
 
       {/* Search Input */}
       <div className="search-container">
@@ -109,6 +125,7 @@ const List = () => {
         </select>
       </div>
 
+      {/* Food Items */}
       <div className="list-table">
         <div className="list-table-format title">
           <b>Image</b>
@@ -118,22 +135,32 @@ const List = () => {
           <b>Action</b>
         </div>
 
-        {filteredList.map((item, index) => {
-          return (
-            <div key={index} className="list-table-format">
-              <img src={`${url}/images/` + item.image} alt="" />
-              <p>{item.name}</p>
-              <p>{item.category}</p>
-              <p>
-                {currency}
-                {item.price}
-              </p>
-              <p className="cursor" onClick={() => removeFood(item._id)}>
-                <FontAwesomeIcon icon={faTrash} />
-              </p>
-            </div>
-          );
-        })}
+        {currentItems.map((item, index) => (
+          <div key={index} className="list-table-format">
+            <img src={`${url}/images/` + item.image} alt="" />
+            <p>{item.name}</p>
+            <p>{item.category}</p>
+            <p>
+              {currency}
+              {item.price}
+            </p>
+            <p className="cursor" onClick={() => removeFood(item._id)}>
+              <FontAwesomeIcon icon={faTrash} />
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="pagination">
+        {Array.from(
+          { length: Math.ceil(filteredList.length / itemsPerPage) },
+          (_, index) => (
+            <button key={index} onClick={() => paginate(index + 1)}>
+              {index + 1}
+            </button>
+          )
+        )}
       </div>
     </div>
   );

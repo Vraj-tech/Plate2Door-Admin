@@ -1,39 +1,100 @@
+/* Navbar container */
 .navbar {
   display: flex;
   justify-content: space-between; /* Space out logo, admin text, and profile */
   align-items: center;
-  padding: 8px 4%;
+  padding: 8px 4%; /* Adjust padding for responsiveness */
+  background-color: #f8f8f8; /* Light background color */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
+/* Logo container styling */
 .navbar .logo-container {
   display: flex;
   align-items: center; /* Align logo and text vertically */
 }
 
+/* Styling for logo */
 .logo {
   width: 150px;
   height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
+  border-radius: 50%; /* Make logo circular */
+  object-fit: cover; /* Ensure image fills the circle */
+  transition: transform 0.3s ease; /* Smooth scaling transition */
 }
 
+/* Logo hover effect */
 .logo:hover {
-  transform: scale(1.1);
+  transform: scale(1.1); /* Slight zoom effect on hover */
 }
 
+/* Admin panel text styling */
 .navbar .admin-panel {
   font-size: 24px;
   font-weight: bold;
-  color: tomato;
+  color: tomato; /* Tomato color for emphasis */
   text-transform: uppercase;
   letter-spacing: 1px;
   text-align: center; /* Center-align the text */
+  flex-grow: 1; /* Ensure the text is centered */
 }
 
+/* Profile image container */
+.navbar .profile-container {
+  position: relative; /* For positioning logout dropdown */
+  display: inline-block;
+}
+
+/* Profile image styling */
 .navbar .profile {
   width: 60px;
   height: 60px;
   border-radius: 50%; /* Make profile image circular */
-  object-fit: cover;
+  object-fit: cover; /* Ensure image fills the circle */
+  cursor: pointer; /* Make the profile image clickable */
+  transition: transform 0.3s ease; /* Smooth scaling effect */
+}
+
+/* Profile hover effect */
+.navbar .profile:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Logout dropdown styling */
+.logout-dropdown {
+  position: absolute;
+  top: 70px; /* Adjust based on profile image size */
+  right: 0;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  min-width: 100px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  visibility: hidden; /* Hidden by default */
+}
+
+/* Make logout dropdown visible on hover */
+.profile-container:hover .logout-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Logout button styling */
+.logout-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 5px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Adding transition effect to button */
+.logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }

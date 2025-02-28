@@ -80,7 +80,9 @@ const FoodCategory = () => {
     try {
       const response = await axios.delete(
         "http://localhost:4000/api/categories/remove",
-        { data: { id: category._id } } // Send the category ID for deletion
+        {
+          data: { id: category._id }, // Send the category ID for deletion
+        }
       );
       if (response.data.success) {
         setDeleteMessage("Category and associated foods deleted successfully!");
@@ -142,3 +144,4 @@ const FoodCategory = () => {
 };
 
 export default FoodCategory;
+//new1

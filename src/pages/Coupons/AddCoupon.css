@@ -1,0 +1,71 @@
+/* Add Coupon Form Container */
+.add-coupon-container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  margin: 50px auto;
+}
+
+/* Title Styling */
+.add-coupon-container h3 {
+  text-align: center;
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* Form Layout */
+.add-coupon-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Input Fields Styling */
+.add-coupon-container input {
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.add-coupon-container input:focus {
+  border-color: #ff8c00; /* Highlight border color on focus */
+  box-shadow: 0 0 5px rgba(255, 140, 0, 0.5); /* Add focus effect */
+}
+
+/* Button Styling */
+.add-coupon-container button {
+  background-color: #ff8c00;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.add-coupon-container button:hover {
+  background-color: #e77f00; /* Darker shade on hover */
+}
+
+/* Responsive Layout for Mobile */
+@media (max-width: 768px) {
+  .add-coupon-container {
+    width: 80%;
+  }
+
+  .add-coupon-container h3 {
+    font-size: 24px;
+  }
+
+  .add-coupon-container button {
+    font-size: 16px;
+  }
+}

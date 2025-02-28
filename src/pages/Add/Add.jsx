@@ -14,13 +14,21 @@ const Add = () => {
     category: "Salad", // Default category
   });
 
-  // Fetch categories when the component mounts
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(`${url}/api/categories/list`);
         if (response.data.success) {
-          setCategories(response.data.data); // Set fetched categories
+          const categoryList = response.data.data;
+          setCategories(categoryList); // Set categories in state
+
+          // If categories exist, set the first category as default instead of "Salad"
+          if (categoryList.length > 0) {
+            setData((prevData) => ({
+              ...prevData,
+              category: categoryList[0].name,
+            }));
+          }
         } else {
           toast.error("Failed to fetch categories.");
         }
@@ -120,15 +128,6 @@ const Add = () => {
               onChange={onChangeHandler}
               value={data.category}
             >
-              {/* <option value="Salad">Salad</option>
-              <option value="Rolls">Rolls</option>
-              <option value="Deserts">Deserts</option>
-              <option value="Sandwich">Sandwich</option>
-              <option value="Cake">Cake</option>
-              <option value="Pure Veg">Pure Veg</option>
-              <option value="Pasta">Pasta</option>
-              <option value="Noodles">Noodles</option> */}
-              {/* Dynamically added categories */}
               {categories.map((category) => (
                 <option key={category._id} value={category.name}>
                   {category.name}

@@ -119,6 +119,85 @@
   border-color: #ff4500;
   box-shadow: 0 0 6px rgba(255, 69, 0, 0.3);
 }
+/* Pagination Container */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 30px; /* Added margin at the bottom */
+}
+
+/* Pagination Button Styling */
+.pagination button {
+  padding: 10px 20px;
+  margin: 0 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f7f7f7;
+  color: #444;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover Effect */
+.pagination button:hover {
+  background-color: #ff6347;
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 99, 71, 0.3);
+}
+
+/* Active Button Styling */
+.pagination button.active {
+  background-color: #ff6347;
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+
+/* Disabled Button Styling */
+.pagination button:disabled {
+  background-color: #e0e0e0;
+  color: #bbb;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+/* Total Food Count */
+.food-count {
+  margin-bottom: 20px;
+  font-size: 18px; /* Slightly larger font */
+  font-weight: 600; /* Stronger bold weight */
+  color: #333; /* Darker color for better contrast */
+  background-color: #f4f4f4; /* Light background to highlight the section */
+  padding: 12px 20px; /* Some padding around the text */
+  border-radius: 8px; /* Rounded corners for a smoother look */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  display: flex;
+  justify-content: center; /* Center-align the text */
+  align-items: center;
+  width: fit-content;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.food-count:hover {
+  background-color: #ff6347; /* Hover effect with a color change */
+  color: white; /* White text when hovered */
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 4px 12px rgba(255, 99, 71, 0.3); /* Slight shadow increase */
+}
+
+/* Mobile Responsive Pagination */
+@media (max-width: 768px) {
+  .pagination button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -145,3 +224,4 @@
     padding: 8px 12px;
   }
 }
+/* Donee */

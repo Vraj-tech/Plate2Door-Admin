@@ -1,0 +1,77 @@
+/* Container for Coupons List */
+.coupons-list-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  margin: 20px auto;
+}
+
+/* Title for Coupons List */
+.coupons-list-container h2 {
+  text-align: center;
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Add Coupon Button */
+.coupons-list-container button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.coupons-list-container button:hover {
+  background-color: #218838;
+}
+
+/* Table Styles */
+.coupons-list-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.coupons-list-container th,
+.coupons-list-container td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.coupons-list-container th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.coupons-list-container td {
+  text-align: center;
+}
+
+/* Delete Button */
+.coupons-list-container td button {
+  background-color: #dc3545;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.coupons-list-container td button:hover {
+  background-color: #c82333;
+}
+
+.coupons-list-container td {
+  font-size: 16px;
+}
