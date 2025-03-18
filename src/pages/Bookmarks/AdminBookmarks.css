@@ -44,8 +44,11 @@
 }
 
 .bookmarks-table th {
-  background-color: #f5f5f5; /* ✅ Light background for headers */
+  background-color: #007bff; /* Dark Steel Blue */
+  color: #ffffff; /* White text for contrast */
   font-weight: bold;
+  padding: 12px;
+  /* text-align: left; */
 }
 
 .bookmarks-table tr:nth-child(even) {

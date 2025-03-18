@@ -11,6 +11,9 @@ import AddCoupon from "./pages/Coupons/AddCoupon";
 import Orders from "./pages/Orders/Orders";
 import AdminLogin from "./pages/auth/AdminLogin"; // Import Admin Login Page
 import AdminBookmarks from "./pages/Bookmarks/AdminBookmarks";
+import Feedback from "./pages/Feedback/Feedback";
+import DeliveryPartners from "./pages/DeliveryPartners/DeliveryPartners"; // ✅ Import Delivery Partners Page
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -130,6 +133,24 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/feedback"
+            element={
+              <ProtectedRoute>
+                <Feedback />
+              </ProtectedRoute>
+            }
+          />
+          {/* ✅ New Delivery Partners Route */}
+          <Route
+            path="/admin/delivery-partners"
+            element={
+              <ProtectedRoute>
+                <DeliveryPartners />
+              </ProtectedRoute>
+            }
+          />
+
           {/* Redirect unknown routes to login */}
           <Route path="*" element={<Navigate to="/admin/login" />} />
         </Routes>

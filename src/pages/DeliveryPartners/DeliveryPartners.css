@@ -1,0 +1,161 @@
+/* ✅ Main Container */
+.delivery-partners-container {
+  width: 100%; /* Ensures full width */
+  max-width: 100%; /* Prevents width limitation */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+/* ✅ Heading Style */
+.delivery-partners-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* ✅ Table Styles */
+.delivery-partners-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.delivery-partners-container th,
+.delivery-partners-container td {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  font-size: 14px;
+}
+
+.delivery-partners-container th {
+  background-color: #f2f2f2;
+  font-weight: 600;
+  color: #555;
+}
+
+.delivery-partners-container tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* ✅ Status Styles */
+.delivery-partners-container .status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status.approved {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status.rejected {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.status.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+/* ✅ Button Styles */
+.delivery-partners-container button {
+  margin-right: 8px;
+  padding: 6px 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Approve Button */
+button.approve-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+button.approve-btn:hover {
+  background-color: #218838;
+}
+
+/* Reject Button */
+button.reject-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+button.reject-btn:hover {
+  background-color: #c82333;
+}
+
+/* ✅ Hover & Focus Effects */
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+button:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* ✅ Error Message Style */
+.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 768px) {
+  .delivery-partners-container table,
+  .delivery-partners-container thead,
+  .delivery-partners-container tbody,
+  .delivery-partners-container th,
+  .delivery-partners-container td,
+  .delivery-partners-container tr {
+    display: block;
+  }
+
+  .delivery-partners-container th {
+    display: none;
+  }
+
+  .delivery-partners-container td {
+    position: relative;
+    padding-left: 40%;
+    text-align: right;
+    border: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .delivery-partners-container td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .delivery-partners-container .status {
+    display: inline-block;
+    margin-top: 5px;
+  }
+
+  .delivery-partners-container button {
+    margin-top: 8px;
+  }
+}

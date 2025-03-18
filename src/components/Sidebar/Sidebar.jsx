@@ -2,7 +2,7 @@ import React from "react";
 import "./Sidebar.css";
 import { assets } from "../../assets/assets";
 import { NavLink } from "react-router-dom";
-import { Bookmark } from "@mui/icons-material"; // ✅ Import Bookmark Icon
+import { Bookmark, Feedback, LocalShipping } from "@mui/icons-material"; // ✅ Import Feedback Icon
 
 const Sidebar = () => {
   return (
@@ -42,6 +42,17 @@ const Sidebar = () => {
           <Bookmark style={{ color: "orange", fontSize: "24px" }} />{" "}
           {/* ✅ Using Material-UI Icon */}
           <p>Bookmarked Foods</p>
+        </NavLink>
+        {/* ✅ "User Feedback" Section */}
+        <NavLink to="/feedback" className="sidebar-option">
+          <Feedback style={{ color: "#1976d2", fontSize: "24px" }} />{" "}
+          {/* ✅ Blue Color */}
+          <p>User Feedback</p>
+        </NavLink>
+        {/* ✅ Delivery Partners */}
+        <NavLink to="/admin/delivery-partners" className="sidebar-option">
+          <LocalShipping style={{ color: "green", fontSize: "24px" }} />
+          <p>Delivery Partners</p>
         </NavLink>
       </div>
     </div>
