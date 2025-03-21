@@ -13,6 +13,7 @@ import AdminLogin from "./pages/auth/AdminLogin"; // Import Admin Login Page
 import AdminBookmarks from "./pages/Bookmarks/AdminBookmarks";
 import Feedback from "./pages/Feedback/Feedback";
 import DeliveryPartners from "./pages/DeliveryPartners/DeliveryPartners"; // ✅ Import Delivery Partners Page
+import FoodReviews from "./pages/FoodReviews/FoodReviews";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -147,6 +148,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <DeliveryPartners />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/food-reviews"
+            element={
+              <ProtectedRoute>
+                <FoodReviews />
               </ProtectedRoute>
             }
           />

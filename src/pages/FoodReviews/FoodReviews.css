@@ -1,0 +1,70 @@
+/* FoodReviews.css */
+
+.food-reviews {
+  min-width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.food-reviews h2 {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.food-reviews table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f9f9f9;
+}
+
+.food-reviews th,
+.food-reviews td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.food-reviews th {
+  background: #4caf50;
+  color: white;
+  font-weight: bold;
+}
+
+.food-reviews tr:nth-child(even) {
+  background: #f2f2f2;
+}
+
+.food-reviews tr:hover {
+  background: #e6f7ff;
+}
+
+.food-reviews td {
+  color: #555;
+}
+
+.food-reviews td:nth-child(3) {
+  font-weight: bold;
+  color: #ff9800;
+}
+
+@media (max-width: 768px) {
+  .food-reviews {
+    max-width: 100%;
+    padding: 10px;
+    overflow-x: auto;
+  }
+
+  .food-reviews table {
+    font-size: 14px;
+  }
+
+  .food-reviews th,
+  .food-reviews td {
+    padding: 8px;
+  }
+}

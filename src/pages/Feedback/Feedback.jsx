@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Feedback.css";
+import Loading from "../../components/Loading/Loading.jsx";
 
 const Feedback = () => {
   const [feedbackList, setFeedbackList] = useState([]);
@@ -122,7 +123,7 @@ const Feedback = () => {
       </div>
 
       {loading ? (
-        <p>Loading feedback...</p>
+        <Loading /> // ✅ Use the Loading component here
       ) : error ? (
         <p className="error-message">{error}</p>
       ) : filteredFeedback.length === 0 ? (

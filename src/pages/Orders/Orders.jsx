@@ -7,6 +7,12 @@ import { assets, url, currency } from "../../assets/assets";
 const Order = () => {
   const [orders, setOrders] = useState([]);
   const [deliveryPartners, setDeliveryPartners] = useState([]);
+  const [orderStats, setOrderStats] = useState({
+    totalOrders: 0,
+    pendingOrders: 0,
+    outForDelivery: 0,
+    deliveredOrders: 0,
+  });
 
   // ✅ Fetch all orders
   const fetchAllOrders = async () => {
@@ -19,6 +25,20 @@ const Order = () => {
       }
     } catch (error) {
       toast.error("Server Error while fetching orders.");
+    }
+  };
+
+  // ✅ Fetch order statistics
+  const fetchOrderStats = async () => {
+    try {
+      const response = await axios.get(`${url}/api/order/order-stats`);
+      if (response.data.success) {
+        setOrderStats(response.data.data);
+      } else {
+        toast.error("Failed to fetch order statistics.");
+      }
+    } catch (error) {
+      toast.error("Server Error while fetching order statistics.");
     }
   };
 
@@ -49,6 +69,7 @@ const Order = () => {
       });
       if (response.data.success) {
         await fetchAllOrders();
+        await fetchOrderStats(); // Refresh stats when status changes
       } else {
         toast.error("Failed to update status.");
       }
@@ -82,11 +103,34 @@ const Order = () => {
   useEffect(() => {
     fetchAllOrders();
     fetchDeliveryPartners();
+    fetchOrderStats(); // Fetch statistics on page load
   }, []);
 
   return (
     <div className="order add">
-      <h3>Order Page</h3>
+      <h3>📦 Order Management</h3>
+
+      {/* ✅ Order Statistics Section */}
+      <div className="order-stats">
+        <div className="stat-box total">
+          <h3>Total Orders</h3>
+          <p>{orderStats.totalOrders}</p>
+        </div>
+        <div className="stat-box pending">
+          <h3>Pending Orders</h3>
+          <p>{orderStats.pendingOrders}</p>
+        </div>
+        <div className="stat-box out-for-delivery">
+          <h3>Out for Delivery</h3>
+          <p>{orderStats.outForDelivery}</p>
+        </div>
+        <div className="stat-box delivered">
+          <h3>Delivered Orders</h3>
+          <p>{orderStats.deliveredOrders}</p>
+        </div>
+      </div>
+
+      {/* ✅ Order List */}
       <div className="order-list">
         {orders.map((order, index) => (
           <div key={index} className="order-item">
@@ -124,6 +168,7 @@ const Order = () => {
             >
               <option value="Food Processing">Food Processing</option>
               <option value="Out for Delivery">Out for Delivery</option>
+              <option value="Delivered">Delivered</option> {/* ✅ Added this */}
             </select>
 
             {/* ✅ Delivery Partner Assignment Dropdown */}

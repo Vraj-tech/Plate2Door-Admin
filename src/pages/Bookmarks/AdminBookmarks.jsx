@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./AdminBookmarks.css"; // ✅ Create this CSS file for styling
 import { url } from "../../assets/assets";
+import Loading from "../../components/Loading/Loading.jsx";
 
 const AdminBookmarks = () => {
   const [bookmarkedFoods, setBookmarkedFoods] = useState([]);
@@ -31,7 +32,7 @@ const AdminBookmarks = () => {
       <h2>Most Bookmarked Foods</h2>
 
       {loading ? (
-        <p className="loading-text">Loading...</p>
+        <Loading /> // ✅ Use the Loading component here
       ) : bookmarkedFoods.length === 0 ? (
         <p className="no-bookmarks">No bookmarks found.</p>
       ) : (

@@ -2,7 +2,12 @@ import React from "react";
 import "./Sidebar.css";
 import { assets } from "../../assets/assets";
 import { NavLink } from "react-router-dom";
-import { Bookmark, Feedback, LocalShipping } from "@mui/icons-material"; // ✅ Import Feedback Icon
+import {
+  Bookmark,
+  Feedback,
+  LocalShipping,
+  RateReview,
+} from "@mui/icons-material"; // ✅ Import Feedback Icon
 
 const Sidebar = () => {
   return (
@@ -53,6 +58,11 @@ const Sidebar = () => {
         <NavLink to="/admin/delivery-partners" className="sidebar-option">
           <LocalShipping style={{ color: "green", fontSize: "24px" }} />
           <p>Delivery Partners</p>
+        </NavLink>
+        {/* ✅ Food Reviews (Fixed Link) */}
+        <NavLink to="/admin/food-reviews" className="sidebar-option">
+          <RateReview style={{ color: "purple", fontSize: "24px" }} />
+          <p>Food Reviews</p>
         </NavLink>
       </div>
     </div>

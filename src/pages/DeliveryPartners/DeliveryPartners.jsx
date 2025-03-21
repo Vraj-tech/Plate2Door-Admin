@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./DeliveryPartners.css";
+import Loading from "../../components/Loading/Loading.jsx";
 
 const DeliveryPartners = () => {
   const [partners, setPartners] = useState([]);
@@ -62,7 +63,7 @@ const DeliveryPartners = () => {
       <h2>Delivery Partners Management</h2>
 
       {loading ? (
-        <p>Loading partners...</p>
+        <Loading /> // ✅ Use the Loading component here
       ) : error ? (
         <p className="error">{error}</p>
       ) : partners.length === 0 ? (
