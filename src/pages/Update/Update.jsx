@@ -167,7 +167,19 @@ const Update = () => {
 
   return (
     <div className="list add flex-col">
-      <p>All Foods List</p>
+      <p
+        style={{
+          fontSize: "24px",
+          fontWeight: "500",
+          color: "#444",
+          marginBottom: "12px",
+          textDecoration: "underline",
+          textDecorationStyle: "dotted", // Dotted underline
+          textUnderlineOffset: "4px", // Adds slight gap between text & line
+        }}
+      >
+        Update Food
+      </p>
 
       {/* Search Box */}
       <div className="search-box">

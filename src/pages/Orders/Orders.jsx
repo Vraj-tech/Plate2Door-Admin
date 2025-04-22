@@ -13,6 +13,8 @@ const Order = () => {
     outForDelivery: 0,
     deliveredOrders: 0,
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const ordersPerPage = 8; // Show 10 orders per page
 
   // ✅ Fetch all orders
   const fetchAllOrders = async () => {
@@ -100,6 +102,15 @@ const Order = () => {
     }
   };
 
+  // ✅ Pagination Logic
+  const indexOfLastOrder = currentPage * ordersPerPage;
+  const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+  const currentOrders = orders.slice(indexOfFirstOrder, indexOfLastOrder);
+  const totalPages = Math.ceil(orders.length / ordersPerPage);
+
+  // ✅ Change Page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   useEffect(() => {
     fetchAllOrders();
     fetchDeliveryPartners();
@@ -130,64 +141,78 @@ const Order = () => {
         </div>
       </div>
 
-      {/* ✅ Order List */}
+      {/* ✅ Order List with Pagination */}
       <div className="order-list">
-        {orders.map((order, index) => (
-          <div key={index} className="order-item">
-            <img src={assets.parcel_icon} alt="Parcel Icon" />
-            <div>
-              <p className="order-item-food">
-                {order.items.map((item, index) =>
-                  index === order.items.length - 1
-                    ? `${item.name} x ${item.quantity}`
-                    : `${item.name} x ${item.quantity}, `
-                )}
-              </p>
-              <p className="order-item-name">
-                {order.address.firstName + " " + order.address.lastName}
-              </p>
-              <div className="order-item-address">
-                <p>{order.address.street},</p>
-                <p>
-                  {`${order.address.city}, ${order.address.state}, ${order.address.country}, ${order.address.zipcode}`}
+        {currentOrders.length === 0 ? (
+          <p>No orders found.</p>
+        ) : (
+          currentOrders.map((order, index) => (
+            <div key={index} className="order-item">
+              <img src={assets.parcel_icon} alt="Parcel Icon" />
+              <div>
+                <p className="order-item-food">
+                  {order.items
+                    .map(
+                      (item, i) =>
+                        `${item.name} x ${item.quantity}${
+                          i !== order.items.length - 1 ? ", " : ""
+                        }`
+                    )
+                    .join("")}
                 </p>
+                <p className="order-item-name">
+                  {order.address.firstName + " " + order.address.lastName}
+                </p>
+                <p className="order-item-phone">{order.address.phone}</p>
               </div>
-              <p className="order-item-phone">{order.address.phone}</p>
+
+              <p>Items: {order.items.length}</p>
+              <p>
+                {currency}
+                {order.amount}
+              </p>
+
+              {/* ✅ Status Dropdown */}
+              <select
+                onChange={(e) => statusHandler(e, order._id)}
+                value={order.status}
+              >
+                <option value="Food Processing">Food Processing</option>
+                <option value="Out for Delivery">Out for Delivery</option>
+                <option value="Delivered">Delivered</option>
+              </select>
+
+              {/* ✅ Delivery Partner Assignment */}
+              <select
+                onChange={(e) => assignDeliveryPartner(e, order._id)}
+                value={order.deliveryPartner?._id || ""}
+              >
+                <option value="">Assign Available Partner</option>
+                {deliveryPartners.length > 0 ? (
+                  deliveryPartners.map((partner) => (
+                    <option key={partner._id} value={partner._id}>
+                      {partner.name} ({partner.phone})
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No Available Partners</option>
+                )}
+              </select>
             </div>
+          ))
+        )}
+      </div>
 
-            <p>Items: {order.items.length}</p>
-            <p>
-              {currency}
-              {order.amount}
-            </p>
-
-            {/* ✅ Order Status Dropdown */}
-            <select
-              onChange={(e) => statusHandler(e, order._id)}
-              value={order.status}
-            >
-              <option value="Food Processing">Food Processing</option>
-              <option value="Out for Delivery">Out for Delivery</option>
-              <option value="Delivered">Delivered</option> {/* ✅ Added this */}
-            </select>
-
-            {/* ✅ Delivery Partner Assignment Dropdown */}
-            <select
-              onChange={(e) => assignDeliveryPartner(e, order._id)}
-              value={order.deliveryPartner?._id || ""}
-            >
-              <option value="">Assign Available Partner</option>
-              {deliveryPartners.length > 0 ? (
-                deliveryPartners.map((partner) => (
-                  <option key={partner._id} value={partner._id}>
-                    {partner.name} ({partner.phone})
-                  </option>
-                ))
-              ) : (
-                <option disabled>No Available Partners</option>
-              )}
-            </select>
-          </div>
+      {/* ✅ Pagination */}
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, i) => (
+          <button
+            key={i}
+            onClick={() => paginate(i + 1)}
+            className={currentPage === i + 1 ? "active" : ""}
+          >
+            {i + 1}
+          </button>
         ))}
       </div>
     </div>

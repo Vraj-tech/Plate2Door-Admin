@@ -96,11 +96,11 @@ const List = () => {
 
   return (
     <div className="list add flex-col">
-      <p>All Foods List</p>
+      {/* <p>All Foods List</p> */}
 
       {/* Display total number of foods */}
       <div className="food-count">
-        <p>Total Foods: {list.length}</p> {/* Display total items */}
+        <p> Total Food Items: {list.length}</p> {/* Display total items */}
       </div>
 
       {/* Search Input */}

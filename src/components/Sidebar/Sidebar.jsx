@@ -7,38 +7,44 @@ import {
   Feedback,
   LocalShipping,
   RateReview,
+  AddCircleOutline,
+  ListAlt,
+  Edit,
+  Category,
+  LocalOffer,
+  Inventory2, // ✅ New Icon for Orders
 } from "@mui/icons-material"; // ✅ Import Feedback Icon
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar-options">
+        <NavLink to="/food-category" className="sidebar-option">
+          <Category style={{ color: "green", fontSize: "24px" }} />
+          <p>Add/Delete Food Category</p>
+        </NavLink>
+
         <NavLink to="/orders" className="sidebar-option">
-          <img src={assets.order_icon} alt="" />
+          <Inventory2 style={{ color: "red", fontSize: "24px" }} />
           <p>Orders</p>
         </NavLink>
         <NavLink to="/add" className="sidebar-option">
-          <img src={assets.add_icon} alt="" />
+          <AddCircleOutline style={{ color: "blue", fontSize: "24px" }} />
           <p>Add Items</p>
         </NavLink>
 
         <NavLink to="/list" className="sidebar-option">
-          <img src={assets.order_icon} alt="" />
+          <ListAlt style={{ color: "brown", fontSize: "24px" }} />
           <p>List/Delete Items</p>
         </NavLink>
 
         <NavLink to="/update" className="sidebar-option">
-          <img src={assets.order_icon} alt="" />
+          <Edit style={{ color: "orange", fontSize: "24px" }} />
           <p>Update Items</p>
         </NavLink>
 
-        <NavLink to="/food-category" className="sidebar-option">
-          <img src={assets.order_icon} alt="" />
-          <p>Add/Delete Food Category</p>
-        </NavLink>
-
         <NavLink to="/coupons" className="sidebar-option">
-          <img src={assets.order_icon} alt="" />
+          <LocalOffer style={{ color: "purple", fontSize: "24px" }} />
           <p>Manage Coupons</p>
         </NavLink>
 
