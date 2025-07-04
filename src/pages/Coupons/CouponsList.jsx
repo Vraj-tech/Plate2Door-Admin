@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import "./CouponsList.css"; // Ensure this import is at the top of the file
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const CouponsList = () => {
   const [coupons, setCoupons] = useState([]);
@@ -12,9 +13,8 @@ const CouponsList = () => {
   // Fetch coupons from the backend when the component mounts
   const fetchCoupons = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:4000/api/coupons/list"
-      );
+      const response = await axios.get(`${BASE_URL}/api/coupons/list`);
+
       if (response.data.success) {
         setCoupons(response.data.data);
       }
@@ -30,10 +30,9 @@ const CouponsList = () => {
   // Handle deleting a coupon
   const deleteCoupon = async (id) => {
     try {
-      const response = await axios.post(
-        "http://localhost:4000/api/coupons/remove",
-        { id }
-      );
+      const response = await axios.post(`${BASE_URL}/api/coupons/remove`, {
+        id,
+      });
 
       if (response.data.success) {
         toast.success("Coupon deleted successfully! ✅");

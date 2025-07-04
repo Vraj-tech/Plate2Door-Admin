@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./FoodReviews.css";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const FoodReviews = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/reviews/admin/food-ratings")
+    fetch(`${BASE_URL}/api/reviews/admin/food-ratings`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);

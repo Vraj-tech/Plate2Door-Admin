@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./AddCoupon.css"; // Ensure this import is at the top of the file
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const AddCoupon = () => {
   const [code, setCode] = useState("");
@@ -15,16 +16,13 @@ const AddCoupon = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:4000/api/coupons/add",
-        {
-          code,
-          discountPercentage,
-          minOrderAmount,
-          expiryDate,
-          usageLimit,
-        }
-      );
+      const response = await axios.post(`${BASE_URL}/api/coupons/add`, {
+        code,
+        discountPercentage,
+        minOrderAmount,
+        expiryDate,
+        usageLimit,
+      });
 
       if (response.data.success) {
         toast.success("Coupon added successfully! 🎉");

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Foodcategory.css";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const FoodCategory = () => {
   const [categoryName, setCategoryName] = useState("");
@@ -14,9 +15,8 @@ const FoodCategory = () => {
   // Fetch categories for dropdown
   const fetchCategories = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:4000/api/categories/list"
-      );
+      const response = await axios.get(`${BASE_URL}/api/categories/list`);
+
       if (response.data.success) {
         setCategories(response.data.data); // Set categories
       }
@@ -48,7 +48,7 @@ const FoodCategory = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/categories/add",
+        `${BASE_URL}/api/categories/add`,
         formData
       );
       if (response.data.success) {
@@ -78,12 +78,9 @@ const FoodCategory = () => {
     }
 
     try {
-      const response = await axios.delete(
-        "http://localhost:4000/api/categories/remove",
-        {
-          data: { id: category._id }, // Send the category ID for deletion
-        }
-      );
+      const response = await axios.delete(`${BASE_URL}/api/categories/remove`, {
+        data: { id: category._id }, // Send the category ID for deletion
+      });
       if (response.data.success) {
         setDeleteMessage("Category and associated foods deleted successfully!");
         setDeleteCategoryName("");

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./DeliveryPartners.css";
 import Loading from "../../components/Loading/Loading.jsx";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const DeliveryPartners = () => {
   const [partners, setPartners] = useState([]);
@@ -11,9 +12,8 @@ const DeliveryPartners = () => {
   const fetchPartners = async () => {
     try {
       setLoading(true);
-      const response = await fetch(
-        "http://localhost:4000/api/delivery/pending"
-      );
+      const response = await fetch(`${BASE_URL}/api/delivery/pending`);
+
       const data = await response.json();
       if (response.ok && data.success) {
         setPartners(data.pendingPartners);
@@ -35,14 +35,11 @@ const DeliveryPartners = () => {
   // ✅ Approve or Reject Partner and Update State Locally
   const updateStatus = async (partnerId, status) => {
     try {
-      const response = await fetch(
-        "http://localhost:4000/api/delivery/status",
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ partnerId, status }),
-        }
-      );
+      const response = await fetch(`${BASE_URL}/api/delivery/status`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ partnerId, status }),
+      });
 
       const data = await response.json();
       if (response.ok && data.success) {

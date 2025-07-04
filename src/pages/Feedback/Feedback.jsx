@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Feedback.css";
 import Loading from "../../components/Loading/Loading.jsx";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const Feedback = () => {
   const [feedbackList, setFeedbackList] = useState([]);
@@ -31,12 +32,9 @@ const Feedback = () => {
         return;
       }
 
-      const response = await axios.get(
-        "http://localhost:4000/api/feedback/all",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const response = await axios.get(`${BASE_URL}/api/feedback/all`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
       setFeedbackList(response.data);
       setFilteredFeedback(response.data);
@@ -58,12 +56,9 @@ const Feedback = () => {
 
     try {
       const token = localStorage.getItem("adminToken");
-      await axios.delete(
-        `http://localhost:4000/api/feedback/delete/${feedbackId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await axios.delete(`${BASE_URL}/api/feedback/delete/${feedbackId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
       // Remove deleted feedback from UI
       setFeedbackList(feedbackList.filter((item) => item._id !== feedbackId));

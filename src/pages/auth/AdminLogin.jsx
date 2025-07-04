@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./AdminLogin.css";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const AdminLogin = () => {
   const [data, setData] = useState({ name: "", email: "", password: "" }); // Added 'name' field
   const [isRegister, setIsRegister] = useState(false);
@@ -32,7 +34,7 @@ const AdminLogin = () => {
 
     setIsLoading(true);
     //ahi thi
-    const BASE_URL = "http://localhost:4000"; // Your backend server URL
+    // const BASE_URL = "http://localhost:4000"; // Your backend server URL
     const endpoint = isRegister
       ? `${BASE_URL}/api/admin/register`
       : `${BASE_URL}/api/admin/login`;
