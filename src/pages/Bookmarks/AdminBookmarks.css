@@ -1,3 +1,4 @@
+/* 🔷 Admin Bookmarks Container */
 .admin-bookmarks {
   width: 90%;
   max-width: 900px;
@@ -5,21 +6,24 @@
   padding: 20px;
   text-align: center;
   background: #fff;
-  border: 1px solid #ddd; /* ✅ Simple border, no extra shadows */
+  border: 1px solid #ddd;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 
+/* 🔷 Title Styling */
 .admin-bookmarks h2 {
   font-size: 24px;
   font-weight: bold;
-  color: #ff5722; /* ✅ Subtle orange to match theme */
-  border-bottom: 2px solid #ddd; /* ✅ Adds a clean underline */
+  color: #ff5722;
+  border-bottom: 2px solid #ddd;
   padding-bottom: 10px;
-  text-transform: uppercase; /* ✅ Makes heading stand out */
+  text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 20px;
 }
 
+/* 🔷 Text States */
 .loading-text,
 .no-bookmarks {
   font-size: 16px;
@@ -28,13 +32,16 @@
   margin-top: 15px;
 }
 
+/* 🔷 Table Styling */
 .bookmarks-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 15px;
   background-color: #fff;
+  overflow-x: auto;
 }
 
+/* Table Cell */
 .bookmarks-table th,
 .bookmarks-table td {
   border: 1px solid #ddd;
@@ -43,28 +50,53 @@
   font-size: 15px;
 }
 
+/* Header Row */
 .bookmarks-table th {
-  background-color: #007bff; /* Dark Steel Blue */
-  color: #ffffff; /* White text for contrast */
+  background-color: #007bff;
+  color: #ffffff;
   font-weight: bold;
   padding: 12px;
-  /* text-align: left; */
 }
 
+/* Zebra Stripes */
 .bookmarks-table tr:nth-child(even) {
-  background-color: #fcfcfc; /* ✅ Slightly different row colors for readability */
+  background-color: #fcfcfc;
 }
 
-/* ✅ Mobile Responsive */
+/* ✅ Mobile Responsive Enhancements */
 @media (max-width: 768px) {
   .admin-bookmarks {
     width: 95%;
     padding: 15px;
   }
 
+  .bookmarks-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
   .bookmarks-table th,
   .bookmarks-table td {
     padding: 8px;
     font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-bookmarks h2 {
+    font-size: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .loading-text,
+  .no-bookmarks {
+    font-size: 14px;
+  }
+
+  .bookmarks-table th,
+  .bookmarks-table td {
+    font-size: 13px;
+    padding: 6px;
   }
 }

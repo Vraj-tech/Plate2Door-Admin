@@ -1,62 +1,71 @@
-/* FoodReviews.css */
-
+/* ✅ Main Container */
 .food-reviews {
   min-width: 80%;
+  max-width: 1000px;
   margin: 20px auto;
   padding: 20px;
   background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  overflow-x: auto; /* Enable scroll on small screens */
 }
 
+/* ✅ Heading */
 .food-reviews h2 {
   text-align: center;
   font-size: 24px;
   color: #333;
   margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
+/* ✅ Table Styles */
 .food-reviews table {
   width: 100%;
   border-collapse: collapse;
   background: #f9f9f9;
+  min-width: 600px; /* Keeps table readable on small screens */
 }
 
+/* ✅ Table Cells */
 .food-reviews th,
 .food-reviews td {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  font-size: 15px;
 }
 
 .food-reviews th {
   background: #4caf50;
   color: white;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
+/* ✅ Row Striping */
 .food-reviews tr:nth-child(even) {
   background: #f2f2f2;
 }
 
 .food-reviews tr:hover {
   background: #e6f7ff;
+  transition: background-color 0.3s;
 }
 
-.food-reviews td {
-  color: #555;
-}
-
+/* ✅ Highlighted Column */
 .food-reviews td:nth-child(3) {
   font-weight: bold;
   color: #ff9800;
 }
 
+/* ✅ Responsive Adjustments */
 @media (max-width: 768px) {
   .food-reviews {
-    max-width: 100%;
-    padding: 10px;
-    overflow-x: auto;
+    width: 95%;
+    padding: 12px;
   }
 
   .food-reviews table {
@@ -66,5 +75,24 @@
   .food-reviews th,
   .food-reviews td {
     padding: 8px;
+  }
+
+  .food-reviews h2 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .food-reviews h2 {
+    font-size: 18px;
+  }
+
+  .food-reviews th,
+  .food-reviews td {
+    font-size: 13px;
+  }
+
+  .food-reviews td:nth-child(3) {
+    font-size: 13.5px;
   }
 }

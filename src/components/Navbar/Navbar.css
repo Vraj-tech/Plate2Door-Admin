@@ -1,69 +1,68 @@
-/* Navbar container */
+/* 🔷 Navbar container */
 .navbar {
   display: flex;
-  justify-content: space-between; /* Space out logo, admin text, and profile */
+  justify-content: space-between;
   align-items: center;
-  padding: 8px 4%; /* Adjust padding for responsiveness */
-  background-color: #f8f8f8; /* Light background color */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 8px 4%;
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
 }
 
-/* Logo container styling */
+/* 🔷 Logo container */
 .navbar .logo-container {
   display: flex;
-  align-items: center; /* Align logo and text vertically */
+  align-items: center;
 }
 
-/* Styling for logo */
+/* 🔷 Logo */
 .logo {
   width: 150px;
   height: 150px;
-  border-radius: 50%; /* Make logo circular */
-  object-fit: cover; /* Ensure image fills the circle */
-  transition: transform 0.3s ease; /* Smooth scaling transition */
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-/* Logo hover effect */
 .logo:hover {
-  transform: scale(1.1); /* Slight zoom effect on hover */
+  transform: scale(1.1);
 }
 
-/* Admin panel text styling */
+/* 🔷 Admin panel title */
 .navbar .admin-panel {
   font-size: 24px;
   font-weight: bold;
-  color: tomato; /* Tomato color for emphasis */
+  color: tomato;
   text-transform: uppercase;
   letter-spacing: 1px;
-  text-align: center; /* Center-align the text */
-  flex-grow: 1; /* Ensure the text is centered */
+  text-align: center;
+  flex-grow: 1;
 }
 
-/* Profile image container */
+/* 🔷 Profile container */
 .navbar .profile-container {
-  position: relative; /* For positioning logout dropdown */
+  position: relative;
   display: inline-block;
 }
 
-/* Profile image styling */
+/* 🔷 Profile picture */
 .navbar .profile {
   width: 60px;
   height: 60px;
-  border-radius: 50%; /* Make profile image circular */
-  object-fit: cover; /* Ensure image fills the circle */
-  cursor: pointer; /* Make the profile image clickable */
-  transition: transform 0.3s ease; /* Smooth scaling effect */
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-/* Profile hover effect */
 .navbar .profile:hover {
-  transform: scale(1.1); /* Slight zoom effect on hover */
+  transform: scale(1.1);
 }
 
-/* Logout dropdown styling */
+/* 🔷 Logout dropdown */
 .logout-dropdown {
   position: absolute;
-  top: 70px; /* Adjust based on profile image size */
+  top: 70px;
   right: 0;
   background-color: #333;
   color: white;
@@ -73,16 +72,16 @@
   text-align: center;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
-  visibility: hidden; /* Hidden by default */
+  visibility: hidden;
+  z-index: 10;
 }
 
-/* Make logout dropdown visible on hover */
 .profile-container:hover .logout-dropdown {
   opacity: 1;
   visibility: visible;
 }
 
-/* Logout button styling */
+/* 🔷 Logout button */
 .logout-btn {
   background: none;
   border: none;
@@ -94,7 +93,60 @@
   text-align: center;
 }
 
-/* Adding transition effect to button */
 .logout-btn:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 🔻 Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+
+  .navbar .admin-panel {
+    font-size: 18px;
+    margin: 10px 0;
+    flex-grow: 0;
+  }
+
+  .navbar .profile {
+    width: 50px;
+    height: 50px;
+  }
+
+  .logout-dropdown {
+    top: 60px;
+    right: 0;
+    min-width: 100px;
+  }
+}
+
+/* 🔻 Tiny screens (≤480px) */
+@media (max-width: 480px) {
+  .navbar .admin-panel {
+    font-size: 16px;
+    letter-spacing: 0.5px;
+  }
+
+  .logo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .navbar .profile {
+    width: 45px;
+    height: 45px;
+  }
+
+  .logout-btn {
+    font-size: 14px;
+  }
 }

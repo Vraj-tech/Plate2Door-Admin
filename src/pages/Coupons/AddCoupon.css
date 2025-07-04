@@ -1,4 +1,4 @@
-/* Add Coupon Form Container */
+/* 🔷 Add Coupon Form Container */
 .add-coupon-container {
   background-color: #fff;
   padding: 40px;
@@ -6,24 +6,27 @@
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   width: 50%;
   margin: 50px auto;
+  box-sizing: border-box;
 }
 
-/* Title Styling */
+/* 🔷 Title Styling */
 .add-coupon-container h3 {
   text-align: center;
   font-size: 28px;
   color: #333;
   margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Form Layout */
+/* 🔷 Form Layout */
 .add-coupon-container form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* Input Fields Styling */
+/* 🔷 Input Fields Styling */
 .add-coupon-container input {
   padding: 12px 15px;
   font-size: 16px;
@@ -34,11 +37,11 @@
 }
 
 .add-coupon-container input:focus {
-  border-color: #ff8c00; /* Highlight border color on focus */
-  box-shadow: 0 0 5px rgba(255, 140, 0, 0.5); /* Add focus effect */
+  border-color: #ff8c00;
+  box-shadow: 0 0 5px rgba(255, 140, 0, 0.5);
 }
 
-/* Button Styling */
+/* 🔷 Button Styling */
 .add-coupon-container button {
   background-color: #ff8c00;
   color: white;
@@ -52,13 +55,14 @@
 }
 
 .add-coupon-container button:hover {
-  background-color: #e77f00; /* Darker shade on hover */
+  background-color: #e77f00;
 }
 
-/* Responsive Layout for Mobile */
+/* 🔻 Responsive Layout - Tablet */
 @media (max-width: 768px) {
   .add-coupon-container {
-    width: 80%;
+    width: 85%;
+    padding: 30px;
   }
 
   .add-coupon-container h3 {
@@ -67,5 +71,29 @@
 
   .add-coupon-container button {
     font-size: 16px;
+  }
+}
+
+/* 🔻 Responsive Layout - Mobile */
+@media (max-width: 480px) {
+  .add-coupon-container {
+    width: 95%;
+    padding: 25px 20px;
+    margin: 30px auto;
+  }
+
+  .add-coupon-container h3 {
+    font-size: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .add-coupon-container input {
+    font-size: 15px;
+    padding: 10px 12px;
+  }
+
+  .add-coupon-container button {
+    font-size: 15px;
+    padding: 12px;
   }
 }

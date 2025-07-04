@@ -1,9 +1,13 @@
+/* 🔷 Sidebar Base Styles */
 .sidebar {
   width: 20%;
   min-height: 100vh;
   border: 1.5px solid #a9a9a9;
   border-top: 0;
+  font-size: max(1vw, 13px);
+  transition: width 0.3s ease;
 }
+
 .sidebar-options {
   padding-top: 50px;
   padding-left: 14%;
@@ -11,6 +15,7 @@
   flex-direction: column;
   gap: 24px;
 }
+
 .sidebar-option {
   display: flex;
   align-items: center;
@@ -20,24 +25,83 @@
   padding: 8px 10px;
   border-radius: 5px 0px 0px 5px;
   cursor: pointer;
+  transition: background 0.2s, border 0.2s;
 }
-.sidebar {
-  font-size: max(1vw, 13px);
-}
+
 .sidebar-option img {
   width: 20px;
 }
+
 .sidebar-option.active {
   background-color: #fff0ed;
   border-color: tomato;
 }
+
+/* 🔻 Tablet & Small Screens (<=900px) */
 @media (max-width: 900px) {
-  .sidebar-option p {
-    display: none;
+  .sidebar {
+    width: 70px;
+  }
+
+  .sidebar-options {
+    padding-left: 0;
+    align-items: center;
   }
 
   .sidebar-option {
-    justify-content: center; /* Centers the icons */
-    padding: 12px; /* Ensures good spacing */
+    justify-content: center;
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .sidebar-option p {
+    display: none;
+  }
+}
+
+/* 🔻 Mobile Screens (<=600px) */
+@media (max-width: 600px) {
+  .sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    border-top: 1px solid #a9a9a9;
+    border-left: 0;
+    border-right: 0;
+    display: flex;
+    justify-content: space-around;
+    z-index: 1000;
+    background-color: white;
+    flex-direction: row;
+    padding: 10px 0;
+  }
+
+  .sidebar-options {
+    flex-direction: row;
+    padding: 0;
+    gap: 0;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .sidebar-option {
+    border: none;
+    border-radius: 0;
+    padding: 10px;
+    width: 60px;
+    flex-direction: column;
+  }
+
+  .sidebar-option img {
+    width: 22px;
+  }
+
+  .sidebar-option.active {
+    background-color: transparent;
+    border: none;
+    color: tomato;
   }
 }

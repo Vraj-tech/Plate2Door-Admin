@@ -1,4 +1,4 @@
-/* Container for Coupons List */
+/* 🔷 Container for Coupons List */
 .coupons-list-container {
   background-color: #fff;
   padding: 20px;
@@ -6,17 +6,20 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 80%;
   margin: 20px auto;
+  box-sizing: border-box;
 }
 
-/* Title for Coupons List */
+/* 🔷 Title */
 .coupons-list-container h2 {
   text-align: center;
   font-size: 28px;
   color: #333;
   margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Add Coupon Button */
+/* 🔷 Add Coupon Button */
 .coupons-list-container button {
   background-color: #28a745;
   color: white;
@@ -28,37 +31,42 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+  font-size: 16px;
 }
 
 .coupons-list-container button:hover {
   background-color: #218838;
 }
 
-/* Table Styles */
+/* 🔷 Table Styles */
 .coupons-list-container table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
   font-size: 16px;
+  overflow-x: auto;
+  background-color: #fff;
 }
 
+/* 🔷 Header and Cell Styles */
 .coupons-list-container th,
 .coupons-list-container td {
   padding: 12px;
-  text-align: left;
   border: 1px solid #ddd;
+  text-align: center;
 }
 
 .coupons-list-container th {
   background-color: #007bff;
+  color: white;
   font-weight: bold;
 }
 
 .coupons-list-container td {
-  text-align: center;
+  font-size: 16px;
 }
 
-/* Delete Button */
+/* 🔷 Delete Button in Table */
 .coupons-list-container td button {
   background-color: #dc3545;
   color: white;
@@ -72,6 +80,63 @@
   background-color: #c82333;
 }
 
-.coupons-list-container td {
-  font-size: 16px;
+/* 🔻 Tablet Responsiveness */
+@media (max-width: 768px) {
+  .coupons-list-container {
+    width: 90%;
+    padding: 16px;
+  }
+
+  .coupons-list-container h2 {
+    font-size: 24px;
+  }
+
+  .coupons-list-container button {
+    font-size: 15px;
+    padding: 8px 16px;
+  }
+
+  .coupons-list-container table {
+    font-size: 15px;
+  }
+
+  .coupons-list-container th,
+  .coupons-list-container td {
+    padding: 10px;
+  }
+}
+
+/* 🔻 Mobile Responsiveness */
+@media (max-width: 480px) {
+  .coupons-list-container {
+    width: 95%;
+    padding: 14px;
+  }
+
+  .coupons-list-container h2 {
+    font-size: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .coupons-list-container button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .coupons-list-container table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .coupons-list-container th,
+  .coupons-list-container td {
+    font-size: 13.5px;
+    padding: 8px;
+  }
+
+  .coupons-list-container td button {
+    padding: 5px 8px;
+    font-size: 13px;
+  }
 }

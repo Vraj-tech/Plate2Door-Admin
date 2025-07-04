@@ -1,20 +1,35 @@
 .verify {
   min-height: 60vh;
   display: grid;
-  place-items: center; /* Ensures proper centering */
-  width: 100%; /* Make sure it takes full width */
+  place-items: center;
+  width: 100%;
+  background-color: #fafafa; /* Optional: light background for clarity */
 }
+
 .verify .spinner {
-  width: 100px;
-  height: 100px;
-  place-self: center;
-  border: 5px solid #bdbdbd;
-  border-top-color: tomato;
+  width: 80px;
+  height: 80px;
+  border: 5px solid #e0e0e0;
+  border-top: 5px solid tomato;
   border-radius: 50%;
-  animation: rotate 1s infinite;
+  animation: rotate 1s linear infinite;
+  transition: all 0.3s ease-in-out;
 }
+
 @keyframes rotate {
   100% {
     transform: rotate(360deg);
+  }
+}
+
+/* Optional: Spinner fade-in effect */
+.verify .spinner {
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in-out forwards, rotate 1s linear infinite;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
   }
 }

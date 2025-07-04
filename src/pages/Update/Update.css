@@ -1,22 +1,21 @@
-/* General styles for the page */
+/* ✅ General Layout */
 .update {
   width: 70%;
-  margin-left: max(5vw, 25px);
-  margin-top: 50px;
+  margin: 50px auto 0 auto;
   color: #6d6d6d;
   font-size: 18px;
 }
 
+/* ✅ Paragraph Styling */
 .update p {
   font-size: 18px;
 }
 
-/* Search Box */
-/* Search Box */
+/* ✅ Search Box */
 .search-box {
   width: 100%;
   max-width: 400px;
-  margin: 20px auto; /* Center horizontally */
+  margin: 20px auto;
   display: flex;
   justify-content: center;
 }
@@ -28,32 +27,37 @@
   border-radius: 4px;
   font-size: 16px;
   outline: none;
+  transition: border 0.3s ease;
 }
 
 .search-box input:focus {
   border-color: #ff6600;
 }
 
-/* Table styles */
+/* ✅ Table Layout */
 .update-table {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 30px;
 }
 
 .update-table-format {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 12px 15px;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .update-table-format.title {
   background-color: #f9f9f9;
   font-weight: bold;
   text-transform: uppercase;
+  color: #333;
 }
 
 .update-table-format img {
@@ -62,41 +66,40 @@
   border-radius: 5px;
 }
 
-/* Action buttons */
+/* ✅ Action Buttons */
 .action-buttons button {
-  padding: 5px 10px;
+  padding: 6px 12px;
   background-color: black;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 .action-buttons button:hover {
-  background-color: #333333;
+  background-color: #333;
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Update form styles */
+/* ✅ Update Form */
 .update-form {
   width: 70%;
-  margin-left: max(5vw, 25px);
-  margin-top: 50px;
+  margin: 50px auto;
   color: #6d6d6d;
   font-size: 18px;
-  padding: 20px;
+  padding: 25px;
   background-color: #fff;
   border: 1px solid #ddd;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
 }
 
 .update-form h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   font-size: 26px;
   color: #444;
 }
@@ -117,48 +120,57 @@
 
 .update-form input,
 .update-form textarea {
-  padding: 10px 10px;
+  padding: 10px;
   font-size: 16px;
   color: #333;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
 
 .update-form textarea {
   resize: none;
-  min-height: 80px;
+  min-height: 100px;
 }
 
-.update-form .add-product-name,
-.update-form .add-product-description {
+/* ✅ Name and Description fields */
+.add-product-name,
+.add-product-description {
   width: max(40%, 280px);
 }
 
-.update-form .add-category-price {
+/* ✅ Category and Price Section */
+.add-category-price {
   display: flex;
   gap: 30px;
+  flex-wrap: wrap;
 }
 
-.update-form .add-category-price select,
-.update-form .add-category-price input {
-  max-width: 120px;
+.add-category-price select,
+.add-category-price input {
+  max-width: 140px;
   padding: 10px;
+  font-size: 16px;
 }
 
+/* ✅ Submit Button */
 .update-form button {
-  max-width: 120px;
+  max-width: 140px;
   padding: 10px;
   background-color: black;
   color: white;
   border: none;
   cursor: pointer;
   font-weight: bold;
+  border-radius: 6px;
   align-self: flex-end;
+  transition: background-color 0.3s ease;
 }
 
 .update-form button:hover {
   background-color: #333;
 }
 
-/* Image preview styles */
+/* ✅ Image Preview Section */
 .image-preview-container {
   margin-top: 10px;
   display: flex;
@@ -170,15 +182,15 @@
   max-width: 120px;
   max-height: 120px;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 6px;
   object-fit: cover;
 }
 
-/* Image upload styles */
 .add-img-upload img {
   width: 120px;
 }
 
+/* ✅ Select Dropdowns */
 .update label {
   display: block;
   margin-bottom: 10px;
@@ -206,4 +218,27 @@
 .update select option {
   font-size: 16px;
   padding: 10px;
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 768px) {
+  .update,
+  .update-form {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .add-category-price {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .update-form button {
+    align-self: center;
+  }
+
+  .search-box input {
+    font-size: 15px;
+  }
 }
