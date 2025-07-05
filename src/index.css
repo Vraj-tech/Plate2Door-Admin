@@ -5,32 +5,41 @@
   box-sizing: border-box;
   font-family: Outfit;
 }
-/* html {
-  font-size: 18px; }/* Increase base font size */
 
+/* Base styles */
 body {
   min-height: 100vh;
   background-color: #fcfcfc;
-  /* font-size: 1.1rem;  */
-  /* Ensures default text is larger */
+  /* font-size: 1.1rem; */
+  overflow-x: hidden;
 }
+
 a {
   text-decoration: none;
   color: inherit;
 }
+
 hr {
   border: none;
   height: 1px;
   background-color: #a9a9a9;
 }
+
+/* ✅ Fixing layout overflow issue */
 .app-content {
   display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: 100px; /* ✅ Prevent bottom content like pagination from getting cut */
 }
+
 .flex-col {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
+
 .cursor {
   cursor: pointer;
 }
