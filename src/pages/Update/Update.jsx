@@ -216,7 +216,7 @@ const Update = () => {
         </div>
         {filteredList.map((item) => (
           <div key={item._id} className="list-table-format">
-            <img src={`${url}/images/` + item.image} alt="" />
+            <img src={item.image} alt={item.name} />
             <p>{item.name}</p>
             <p>{item.category}</p>
             <p>
@@ -299,7 +299,7 @@ const Update = () => {
               )}
               {formData.currentImage && !previewImage && (
                 <img
-                  src={`${url}/images/${formData.currentImage}`}
+                  src={formData.currentImage}
                   alt="Current"
                   className="current-image"
                 />

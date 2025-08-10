@@ -26,13 +26,30 @@ const List = () => {
   };
 
   // Remove food item
+  // Remove food item
   const removeFood = async (foodId) => {
-    const response = await axios.post(`${url}/api/food/remove`, { id: foodId });
-    await fetchList();
-    if (response.data.success) {
-      toast.success(response.data.message);
-    } else {
-      toast.error("Error");
+    if (
+      !window.confirm(
+        "Are you sure you want to delete this food item? This will also delete the image."
+      )
+    ) {
+      return;
+    }
+
+    try {
+      const response = await axios.post(`${url}/api/food/remove`, {
+        id: foodId,
+      });
+
+      if (response.data.success) {
+        toast.success(response.data.message);
+        fetchList(); // Refresh after deletion
+      } else {
+        toast.error(response.data.message || "Error deleting food");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Server error while deleting food");
     }
   };
 
@@ -137,7 +154,8 @@ const List = () => {
 
         {currentItems.map((item, index) => (
           <div key={index} className="list-table-format">
-            <img src={`${url}/images/` + item.image} alt="" />
+            <img src={item.image} alt={item.name} />
+
             <p>{item.name}</p>
             <p>{item.category}</p>
             <p>
